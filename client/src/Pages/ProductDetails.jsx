@@ -6,7 +6,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { publicRequest } from "../api";
 import { addProduct } from "../redux/cartRedux";
 import Layout from "../Components/Layout";
-import styles from "./productpage.module.css";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -40,33 +39,34 @@ const ProductPage = () => {
 
   return (
     <Layout>
-      <div className={styles.wrapper}>
-        <div className={styles.imgContainer}>
-          <img className={styles.image} src={product.img} />
+      <div className="grid grid-cols-8">
+        <div className="col-span-4 flex justify-end">
+          <img className="mr-10 w-3/4" src={product.img} />
         </div>
-        <div className={styles.infoContainer}>
-          <div className={styles.vendorDiv}>
-            <h5 className={styles.vendorName}>{product.vendor}</h5>
+        <div className="col-span-4">
+          <div className="bg-black p-1 inline-block">
+            <h5 className="m-1 font-medium text-white">{product.vendor}</h5>
           </div>
-          <h1>{product.name}</h1>
-          <p className={styles.description}>{product.description}</p>
-          <h4 className={styles.price}>&#8358;{product.price}</h4>
-          <div className={styles.addContainer}>
-            <div className={styles.amountContainer}>
-              <RemoveIcon
-                onClick={() => handleQuantity("dec")}
-                sx={{ cursor: "pointer" }}
-              />
-              <span className={styles.amount}>{quantity}</span>
-              <AddIcon
-                onClick={() => handleQuantity("inc")}
-                sx={{ cursor: "pointer" }}
-              />
-            </div>
-            <button className={styles.button} onClick={handleClick}>
-              ADD TO CART
-            </button>
+          <h1 className="mb-2">{product.name}</h1>
+          <p className="">{product.description}</p>
+          <h4 className="my-4 text-3xl">&#8358;{product.price}</h4>
+          <div className="flex items-center">
+            <RemoveIcon
+              onClick={() => handleQuantity("dec")}
+              sx={{ cursor: "pointer" }}
+            />
+            <span className="mx-2 text-2xl">{quantity}</span>
+            <AddIcon
+              onClick={() => handleQuantity("inc")}
+              sx={{ cursor: "pointer" }}
+            />
           </div>
+          <button
+            className="px-6 py-4 mt-3 border-0 text-sm bg-teal-700 text-white rounded-lg"
+            onClick={handleClick}
+          >
+            ADD TO CART
+          </button>
         </div>
       </div>
     </Layout>

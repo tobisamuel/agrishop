@@ -41,7 +41,7 @@ const Navbar = () => {
           )}
 
           {user ? (
-            <span className="text-lg" onClick={handleLogout}>
+            <span className="text-lg cursor-pointer" onClick={handleLogout}>
               LOGOUT
             </span>
           ) : (

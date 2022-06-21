@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import VendorForm from "../Components/Forms/VendorForm";
+import VendorForm from "../../Components/Forms/VendorForm";
 import styles from "./vendorRegistration.module.css";
 
 const VendorRegistration = () => {

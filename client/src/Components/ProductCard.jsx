@@ -14,7 +14,7 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div className="">
+    <div>
       <div className="w-full h-60 bg-gray-200 rounded-md">
         <img
           src={product.img}

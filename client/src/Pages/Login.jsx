@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/apiCalls";
-import styles from "./login.module.css";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -28,41 +26,49 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <h1 className={styles.title}>Login to AgriShop</h1>
-        <h5 className={styles.question}>
-          Don't have an account? <Link to="/register">Register</Link>
-        </h5>
-        <form className={styles.form}>
-          <TextField
-            id="standard-basic"
-            label="Email"
-            name="email"
-            variant="standard"
-            sx={{ mb: 1, width: "100%" }}
-            onChange={handleInputChange}
-          />
-          <TextField
-            id="standard-basic"
-            type="password"
-            label="Password"
-            name="password"
-            variant="standard"
-            sx={{ mb: 1, width: "100%" }}
-            onChange={handleInputChange}
-          />
-          <button
-            className={styles.button}
-            onClick={handleLogin}
-            disabled={isFetching}
-          >
-            Login
-          </button>
-          {error && (
-            <span className={styles.error}>Something went wrong....</span>
-          )}
-        </form>
+    <div>
+      <div className="my-3">
+        <h1 className="self-center text-center text-3xl text-teal-600 font-bold">
+          <Link to="/">AGRISHOP</Link>
+        </h1>
+        <div className="flex justify-center">
+          <form className="flex flex-col my-3 px-7 py-5 border-2">
+            <h1 className="mb-3 text-2xl font-semibold">Sign In</h1>
+            <label className="text-xs font-bold">Email address</label>
+            <input
+              className="border-x border-y p-1"
+              name="email"
+              type="text"
+              onChange={handleInputChange}
+            />
+            <label className="mt-3 text-xs font-bold">Password</label>
+            <input
+              className="border-x border-y p-1"
+              name="password"
+              type="password"
+              onChange={handleInputChange}
+            />
+            <button
+              className="p-2 mt-3 text-sm bg-teal-700 text-white rounded-md disabled:cursor-not-allowed disabled:bg-gray-400"
+              onClick={handleLogin}
+              disabled={isFetching}
+            >
+              Login
+            </button>
+            {error && (
+              <span className="text-xs text-red-600">
+                Something went wrong....
+              </span>
+            )}
+
+            <h5 className="mt-2">
+              Don't have an account?
+              <Link to="/register">
+                <span className="ml-1 text-teal-600">Register</span>
+              </Link>
+            </h5>
+          </form>
+        </div>
       </div>
     </div>
   );
