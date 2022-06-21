@@ -1,0 +1,145 @@
+.wrapper {
+    margin-bottom: 30px;
+}
+
+.title {
+    font-weight: 300;
+    text-align: center;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+}
+
+.cartItemsContainer {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: #f3f3f3;
+    height: 100%;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.cartItemContainer {
+    width: 65%;
+    align-self: center;
+    background-color: white;
+    border-radius: 10px;
+    margin: 20px 0 20px 0;
+}
+
+.itemWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.cartItem {
+    display: flex;
+}
+
+.image {
+    flex: 1;
+    height: 100%;
+    width: 50px;
+    align-self: center;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.details {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.vendorName {
+    font-weight: 700;
+}
+
+.productName {
+    font-weight: 300;
+}
+
+.addContainer {
+    flex: 2;
+    /* width: 50%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.price {
+    flex: 1;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.amountContainer {
+    display: flex;
+    font-weight: 700;
+    align-items: center;
+}
+
+.amount {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summaryDetails {
+    display: flex;
+    align-items: center;
+}
+
+.summaryTitle {
+    font-size: 30px;
+    margin-right: 1px;
+
+}
+
+
+.subTotal {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.total {
+    font-size: 24px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.button {
+    width: 10%;
+    height: 50px;
+    background-color: teal;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.cartMessage {
+    margin-left: 10px;
+}

@@ -1,59 +1,13 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { Grid } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import Announcements from "../Components/Announcements";
-import Navbar from "../Components/Navbar";
+import Layout from "../Components/Layout";
 import Newsletter from "../Components/Newsletter";
-import Footer from "../Components/Footer";
 import Product from "../Components/Product";
+import styles from "./productlist.module.css";
 import { publicRequest } from "../api/";
-
-const Container = styled.div``;
-
-const ProductContainer = styled.div`
-  margin: 10px;
-`;
-
-const Title = styled.h1`
-  margin: 10px 10px;
-  text-align: center;
-  color: teal;
-`;
-
-const FilterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const SearchContainer = styled.div`
-  border: 2px solid teal;
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  width: 30%;
-  height: 40px;
-`;
-
-const Filter = styled.div`
-  margin: 10px;
-`;
-
-const FilterText = styled.span`
-  font-size: 20px;
-  font-weight: 600;
-  color: teal;
-`;
-
-const Select = styled.select`
-  padding: 10px;
-  margin-left: 10px;
-`;
-
-const Option = styled.option``;
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -83,12 +37,10 @@ const ProductList = () => {
   }, [category]);
 
   return (
-    <Container>
-      <Announcements />
-      <Navbar />
-      <Title>Products</Title>
-      <FilterContainer>
-        <SearchContainer>
+    <Layout>
+      <h1 className={styles.title}>Products</h1>
+      <div className={styles.filterContainer}>
+        <div className={styles.searchContainer}>
           <SearchIcon sx={{ ml: 1 }} />
           <InputBase
             placeholder="Search for Products"
@@ -97,20 +49,19 @@ const ProductList = () => {
               setSearchItem(e.target.value);
             }}
           />
-        </SearchContainer>
-        <Filter>
-          <FilterText>Filter by Category:</FilterText>
-          <Select name="category" onChange={handleFilters}>
-            <Option value="all">All</Option>
-            <Option value="grains">Grains</Option>
-            <Option value="poultry">Poultry</Option>
-            <Option value="vegetables">Vegetables</Option>
-            <Option value="fruits">Fruits</Option>
-          </Select>
-        </Filter>
-      </FilterContainer>
-      {/* // <Products category={category} /> */}
-      <ProductContainer>
+        </div>
+        <div className={styles.filter}>
+          <span className={styles.filterText}>Filter by Category:</span>
+          <select name="category" onChange={handleFilters}>
+            <option value="all">All</option>
+            <option value="grains">Grains</option>
+            <option value="poultry">Poultry</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="fruits">Fruits</option>
+          </select>
+        </div>
+      </div>
+      <div className={styles.productContainer}>
         <Grid container spacing={2}>
           {products
             .filter((product) => {
@@ -128,10 +79,9 @@ const ProductList = () => {
               </Grid>
             ))}
         </Grid>
-      </ProductContainer>
+      </div>
       <Newsletter />
-      <Footer />
-    </Container>
+    </Layout>
   );
 };
 
