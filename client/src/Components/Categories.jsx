@@ -1,52 +1,40 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { categories } from "../data";
-import CategoryItem from "./CategoryItem";
-import { mobile } from "../responsive";
 
-const Container = styled.div`
-  height: 43vh;
-  /* margin-top: 20px; */
-  background-color: #ebebeb;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  ${mobile({ justifyContent: "center", alignItems: "center" })}
-`;
-
-const Title = styled.h1`
-  color: teal;
-  margin: 20px 0px;
-  font-weight: 600;
-`;
-
-const CatContainer = styled.div`
-  /* background-color: #003f3f; */
-  display: flex;
-  margin: 0 10px 30px 10px;
-  /* padding-bottom: 10px; */
-  justify-content: space-evenly;
-  ${mobile({ padding: "0 10", flexDirection: "column" })}
-`;
-
-function Categories() {
+const Categories = () => {
   return (
-    <Container>
-      <TitleContainer>
-        <Title>Top Categories</Title>
-      </TitleContainer>
+    <div className="flex flex-col justify-center mt-5 h-1/2">
+      <div className="flex justify-center">
+        <h1 className="my-5 text-3xl text-teal-600 font-semibold">
+          Top Categories
+        </h1>
+      </div>
 
-      <CatContainer>
+      <div className="flex justify-evenly mt-0 mb-8 mx-3 pb-3">
         {categories.map((category) => (
-          <CategoryItem key={category.id} category={category} />
+          <div
+            key={category.id}
+            className="flex-1 m-3 h-40 rounder-md border-4 border-teal-600 relative"
+          >
+            <Link to={`/products/${category.cat}`}>
+              <img
+                className="w-full h-full object-cover opacity-40"
+                src={category.img}
+              />
+              <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                <h1 className="mb-3 text-4xl text-teal-800">
+                  {category.title}
+                </h1>
+                <button className="p-3 bg-teal-600 text-white cursor-pointer">
+                  SHOP NOW
+                </button>
+              </div>
+            </Link>
+          </div>
         ))}
-      </CatContainer>
-    </Container>
+      </div>
+    </div>
   );
-}
+};
 
 export default Categories;

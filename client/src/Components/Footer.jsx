@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { Link } from "react-router-dom";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -6,149 +6,74 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import { mobile } from "../responsive";
-import { Link } from "react-router-dom";
-
-const LinkR = styled(Link)`
-  text-decoration: none;
-  color: teal;
-`;
-
-const Container = styled.div`
-  display: flex;
-  ${mobile({ flexDirection: "column" })}
-`;
-
-const Left = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  /* align-items: flex-start; */
-`;
-
-const Logo = styled.h1`
-  margin: 0px;
-`;
-const Description = styled.p`
-  margin: 0px;
-  padding: 10px 0px;
-`;
-const IconContainer = styled.div`
-  display: flex;
-  /* justify-content: center; */
-`;
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: teal;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px;
-`;
-
-const Center = styled.div`
-  flex: 1;
-  padding: 20px;
-  ${mobile({ display: "none" })}
-`;
-
-const Title = styled.h2`
-  margin: 0;
-`;
-const List = styled.ul`
-  margin-top: 15px;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-`;
-const ListItem = styled.li`
-  width: 50%;
-  margin-bottom: 5px;
-`;
-const Right = styled.div`
-  flex: 1;
-  padding: 20px;
-  ${mobile({ backgroundColor: "lightgray" })}
-`;
-
-const ContactItem = styled.div`
-  margin-top: 10px;
-  margin-bottom: 20px;
-  display: flex;
-  align-content: center;
-`;
-
-const Payment = styled.img``;
 
 const Footer = () => {
   return (
-    <Container>
-      <Left>
-        <Logo>AGRISHOP</Logo>
-        <Description>
+    <div className="grid grid-cols-3">
+      {/* left side */}
+      <div className="flex flex-col p-5">
+        <span className="text-3xl text-teal-600 font-bold">AGRISHOP</span>
+        <p className="py-2">
           AgriShop is a digital marketplace for selling and buying crops and
           agricultural products. AgriShop is a virtual platform where farmers
           can register as Vendors and list their products for sale and perform
           business transactions electronically.
-        </Description>
-        <IconContainer>
-          <Icon>
-            <TwitterIcon />
-          </Icon>
-          <Icon>
-            <FacebookIcon />
-          </Icon>
-          <Icon>
-            <InstagramIcon />
-          </Icon>
-          <Icon>
-            <YouTubeIcon />
-          </Icon>
-        </IconContainer>
-      </Left>
-      <Center>
-        <Title>Useful Links</Title>
-        <List>
-          <ListItem>
-            <LinkR to="/">Home</LinkR>
-          </ListItem>
-          <ListItem>
-            <LinkR to="/products/all">Products</LinkR>
-          </ListItem>
-          <ListItem>
-            <LinkR to="/vendor">Vendor</LinkR>
-          </ListItem>
-          <ListItem>
-            <LinkR to="/cart">Cart</LinkR>
-          </ListItem>
-          <ListItem>
-            <LinkR to="/register">Register</LinkR>
-          </ListItem>
-          <ListItem>
-            <LinkR to="/login">Login</LinkR>
-          </ListItem>
-        </List>
-      </Center>
-      <Right>
-        <Title>Contact</Title>
-        <ContactItem>
-          <LocationOnIcon sx={{ mr: "10px" }} /> University of Ilorin, Fate
-          Tanke Rd, Ilorin, Kwara.
-        </ContactItem>
-        <ContactItem>
-          <PhoneIcon sx={{ mr: "10px" }} /> +234 123 456 789
-        </ContactItem>
-        <ContactItem>
-          <EmailOutlinedIcon sx={{ mr: "10px" }} /> agrishop@gmail.com
-        </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
-      </Right>
-    </Container>
+        </p>
+        <div className="flex space-x-3 text-teal-600">
+          <TwitterIcon />
+          <FacebookIcon />
+          <InstagramIcon />
+          <YouTubeIcon />
+        </div>
+      </div>
+
+      {/* Center */}
+      <div className="p-5">
+        <h2 className="text-lg font-bold text-teal-600">Useful Links</h2>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/products/all">Products</Link>
+          </li>
+          <li>
+            <Link to="/vendor">Vendor</Link>
+          </li>
+          <li>
+            <Link to="/cart">Cart</Link>
+          </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </ul>
+      </div>
+
+      {/* Right Side */}
+      <div className="p-5">
+        <h2 className="text-lg font-bold text-teal-600">Contact</h2>
+        <div className="grid grid-rows-4 space-y-3">
+          <div>
+            <LocationOnIcon />
+            <span className="ml-3">
+              University of Ilorin, Fate Tanke Rd, Ilorin, Kwara.
+            </span>
+          </div>
+          <div>
+            <PhoneIcon />
+            <span className="ml-3">+234 123 456 789</span>
+          </div>
+          <div>
+            <EmailOutlinedIcon />
+            <span className="ml-3">agrishop@gmail.com</span>
+          </div>
+          <img src="https://i.ibb.co/Qfvn4z6/payment.png" />
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CustomerForm from "../Components/CustomerForm";
+import CustomerRegistrationForm from "../Components/Forms/CustomerRegistrationForm";
 import styles from "./customerRegistration.module.css";
 
 const CustomerRegistration = () => {
@@ -11,7 +11,7 @@ const CustomerRegistration = () => {
           Already have an account? <Link to="/login">Log in</Link>
         </h4>
         <div className={styles.formContainer}>
-          <CustomerForm />
+          <CustomerRegistrationForm />
         </div>
       </div>
     </div>

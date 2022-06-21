@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
-import { mobile } from "../responsive";
+import { mobile } from "../../responsive";
 
 const Form = styled.form`
   width: 90%;

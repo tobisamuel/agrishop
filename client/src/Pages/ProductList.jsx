@@ -4,8 +4,7 @@ import { Grid } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Layout from "../Components/Layout";
-import Newsletter from "../Components/Newsletter";
-import Product from "../Components/Product";
+import Product from "../Components/ProductCard";
 import styles from "./productlist.module.css";
 import { publicRequest } from "../api/";
 
@@ -80,7 +79,6 @@ const ProductList = () => {
             ))}
         </Grid>
       </div>
-      <Newsletter />
     </Layout>
   );
 };
