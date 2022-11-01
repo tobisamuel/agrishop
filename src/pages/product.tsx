@@ -22,6 +22,12 @@ export const ProductPage = () => {
     setQuantity((prev) => prev + 1);
   };
 
+  const addToCart = () => {
+    if (product) {
+      dispatch({ type: "ADD_TO_CART", payload: { product, quantity } });
+    }
+  };
+
   if (isLoading) return <Spinner />;
 
   return (
@@ -30,8 +36,6 @@ export const ProductPage = () => {
         <div className="relative w-full h-[300px] md:w-[500px] md:h-[500px] bg-slate-100">
           <img
             src={product?.image}
-            //   layout="fill"
-            //   objectFit="cover"
             className="h-full w-full object-cover object-center"
             alt=""
           />
@@ -77,12 +81,7 @@ export const ProductPage = () => {
             <div className="fixed bottom-0 left-0 mt-2 p-3 w-full bg-white border-y md:static md:border-y-0 md:p-0">
               <button
                 className="w-full p-3 bg-slate-300 font-semibold rounded hover:bg-slate-400"
-                onClick={() =>
-                  dispatch({
-                    type: "ADD_TO_CART",
-                    payload: { product, quantity },
-                  })
-                }
+                onClick={addToCart}
               >
                 Add to cart
               </button>
