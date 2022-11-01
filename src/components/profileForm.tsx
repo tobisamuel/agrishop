@@ -1,15 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import useId from "../hooks/useId";
 import useFetchUser from "../hooks/useFetchUser";
 import { updateUser } from "../api/requests";
 import { User } from "../utils/types";
 import Spinner from "./spinner";
+import useAuth from "../hooks/useAuth";
 
 const ProfileForm = () => {
+  const { userId } = useAuth();
   const queryClient = useQueryClient();
-  const userId = useId();
 
   const userMutation = useMutation(updateUser, {
     onSuccess: () => {
@@ -17,12 +17,12 @@ const ProfileForm = () => {
     },
   });
 
-  const { data, isLoading, error, isError } = useFetchUser(userId);
+  const { data, isLoading, error, isError } = useFetchUser();
 
   const formik = useFormik<User>({
     enableReinitialize: true,
     initialValues: {
-      id: userId,
+      _id: userId,
       email: data?.email || "",
       firstName: data?.firstName || "",
       lastName: data?.lastName || "",

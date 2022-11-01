@@ -1,6 +1,6 @@
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
-import { Address } from "../lib/types";
+import { Address } from "../utils/types";
 import useAuth from "../hooks/useAuth";
 
 const useFetchAddress = () => {

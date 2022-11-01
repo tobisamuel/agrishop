@@ -1,6 +1,6 @@
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
-import { User } from "../lib/types";
+import { User } from "../utils/types";
 import useAuth from "../hooks/useAuth";
 
 const useFetchUser = () => {

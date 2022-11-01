@@ -1,6 +1,6 @@
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useQuery } from "@tanstack/react-query";
-import { Order } from "../lib/types";
+import { Order } from "../utils/types";
 import useAuth from "../hooks/useAuth";
 
 const useFetchOrders = ({ status = "pending" } = {}) => {

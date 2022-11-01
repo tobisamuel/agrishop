@@ -1,4 +1,4 @@
-import { Product } from "../lib/types";
+import { Product } from "../../utils/types";
 
 type CartItem = {
   product: Product;

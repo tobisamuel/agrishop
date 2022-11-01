@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import Logo from "./Logo";
-import Sidebar from "./sidebar";
+import Sidebar from "./Sidebar";
 import useOutsideClick from "../hooks/useOutsideClick";
 
 const MenuItems = [
