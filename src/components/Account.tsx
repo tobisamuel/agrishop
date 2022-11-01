@@ -1,5 +1,4 @@
 import useFetchUser from "../hooks/useFetchUser";
-import PasswordForm from "./passwordForm";
 import Spinner from "./spinner";
 
 const AccountPage = () => {
