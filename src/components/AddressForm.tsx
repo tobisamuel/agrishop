@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { createAddress } from "../api/requests";
 import useAuth from "../hooks/useAuth";
 import { Address } from "../utils/types";
+import Spinner from "./spinner";
 
 type Props = {
   closeModal: () => void;
@@ -49,12 +50,12 @@ const AddressForm = ({ closeModal, address }: Props) => {
   };
 
   return (
-    <div className=" w-screen h-full">
+    <div className="w-screen h-full">
       <div className="fixed top-0 left-0 w-full h-full bg-black/50"></div>
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10/12 p-4 bg-white rounded-lg">
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10/12 p-4 bg-white rounded-lg md:w-1/2">
         <h1 className="mt-2 mb-4 text-xl font-semibold">Add a new Address</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className="flex flex-col gap-4 md:space-y-0 md:flex-row md:gap-2">
+          <div className="flex flex-col gap-4 md:space-y-0 md:flex-row md:gap-3">
             <input
               className="w-full block border-2 p-2 rounded-md text-sm"
               type="text"
@@ -73,7 +74,7 @@ const AddressForm = ({ closeModal, address }: Props) => {
             />
           </div>
 
-          <div className="flex flex-col gap-4 md:space-y-0 md:flex-row md:gap-2">
+          <div className="flex flex-col gap-4 md:space-y-0 md:flex-row md:gap-3">
             <input
               className="w-full block border-2 p-2 rounded-md text-sm"
               type="text"
@@ -102,7 +103,7 @@ const AddressForm = ({ closeModal, address }: Props) => {
             />
           </div>
 
-          <div className="flex flex-col gap-4 md:space-y-0 md:flex-row md:gap-2">
+          <div className="flex flex-col gap-4 md:space-y-0 md:flex-row md:gap-3">
             <input
               className="w-full block border-2 p-2 rounded-md text-sm"
               type="text"
