@@ -21,15 +21,15 @@ const AddressesPage = () => {
           <h1 className="text-2xl">Shipping Address</h1>
         </div>
 
-        <div className="mt-4 min-h-[300px] px-2 py-4 bg-slate-50 rounded">
-          <button
-            type="button"
-            className="mb-4 px-4 py-2 bg-slate-700 text-sm text-white rounded"
-            onClick={() => setShowModal(true)}
-          >
-            Add a new address
-          </button>
+        <button
+          type="button"
+          className="mt-4 px-4 py-2 bg-slate-300 text-sm rounded"
+          onClick={() => setShowModal(true)}
+        >
+          Add a new address
+        </button>
 
+        <div className="mt-4 min-h-[300px] px-2 py-4 bg-slate-50 rounded">
           {isLoading && <Spinner />}
 
           {data ? (

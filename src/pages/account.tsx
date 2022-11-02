@@ -15,10 +15,8 @@ export const Account = () => {
       <div className="p-2 bg-slate-300 flex gap-3 items-center overflow-scroll md:hidden scrollbar-hide">
         {navItems.map((item) => (
           <NavLink
-            // activeClassName="text-red-500 font-semibold"
             key={item.name}
             to={item.href}
-            // className="shrink-0"
             className={({ isActive }) =>
               `shrink-0 ${isActive ? "text-red-500 font-semibold" : ""}`
             }
@@ -33,7 +31,6 @@ export const Account = () => {
           <div className="py-3">
             {navItems.map((item) => (
               <NavLink
-                // activeClassName="text-red-500 font-semibold"
                 key={item.name}
                 to={item.href}
                 className={({ isActive }) =>

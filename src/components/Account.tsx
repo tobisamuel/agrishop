@@ -74,23 +74,21 @@ const AccountPage = () => {
         </form>
       </div>
 
-      <div>
-        <h1 className="mb-6 text-2xl text-zinc-600 font-medium">
-          Change Password
-        </h1>
+      <div className="mt-4">
+        <h2 className="text-xl">Change Password</h2>
 
-        <form className="space-y-4">
+        <form className="mt-4 space-y-2">
           <fieldset>
             <label
               htmlFor="oldPassword"
-              className="block mb-4 text-sm font-medium"
+              className="block mb-2 text-sm font-medium"
             >
               Old Password
             </label>
 
             <input
               id="oldPassword"
-              className={`w-full block border-2 p-3 rounded-md text-sm focus:outline-2 focus:outline-offset-0`}
+              className="w-full block border-2 p-2 rounded-md text-sm"
               type="password"
             />
           </fieldset>
@@ -98,14 +96,14 @@ const AccountPage = () => {
           <fieldset>
             <label
               htmlFor="newPassword"
-              className="block mb-4 text-sm font-medium"
+              className="block mb-2 text-sm font-medium"
             >
               New Password
             </label>
 
             <input
               id="newPassword"
-              className={`w-full block border-2 p-3 rounded-md text-sm focus:outline-2 focus:outline-offset-0`}
+              className="w-full block border-2 p-2 rounded-md text-sm"
               type="password"
             />
           </fieldset>
@@ -120,7 +118,7 @@ const AccountPage = () => {
 
             <input
               id="confirmPassword"
-              className={`w-full block border-2 p-3 rounded-md text-sm focus:outline-2 focus:outline-offset-0`}
+              className="w-full block border-2 p-2 rounded-md text-sm"
               type="password"
             />
           </fieldset>
@@ -128,7 +126,7 @@ const AccountPage = () => {
           <div className="text-right">
             <button
               type="submit"
-              className="text-white font-medium mt-10 px-5 py-2 bg-zinc-600 rounded-md disabled:cursor-not-allowed"
+              className="text-sm text-white font-medium mt-4 px-5 py-2 bg-zinc-500 rounded-md"
             >
               Change Password
             </button>

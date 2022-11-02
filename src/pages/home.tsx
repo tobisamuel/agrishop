@@ -53,12 +53,11 @@ export const Home = () => {
                 >
                   <img
                     src={category.image}
-                    // layout="fill"
-                    // objectFit="cover"
-                    alt=""
+                    className="h-full w-full object-cover object-center"
+                    alt={category.name}
                   />
-                  <div className="relative h-full w-full bg-black/50"></div>
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto text-xl text-white md:text-2xl">
+
+                  <div className="absolute top-0 h-full w-full flex justify-center items-center bg-black/50 text-lg text-white md:text-2xl">
                     <span>{category.name}</span>
                   </div>
                 </div>
@@ -80,11 +79,9 @@ export const Home = () => {
                   >
                     <img
                       src={grains}
-                      // layout="fill"
-                      // objectFit="cover"
+                      className="h-full w-full object-cover object-center"
                       alt=""
                     />
-                    <h3 className="text-7xl text-gray-400">{index}</h3>
                   </div>
                 ))}
               </Carousel>
