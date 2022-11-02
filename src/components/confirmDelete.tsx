@@ -1,16 +1,35 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteAddress } from "../api/requests";
+import { Address } from "../utils/types";
+
 type Props = {
-  handleDelete: () => void;
   closeModal: () => void;
+  address: Address;
 };
 
-const ConfirmDelete = ({ handleDelete, closeModal }: Props) => {
+const ConfirmDelete = ({ closeModal, address }: Props) => {
+  const queryClient = useQueryClient();
+
+  const addressMutation = useMutation(deleteAddress, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["addresses"]);
+    },
+  });
+
+  const handleDelete = () => {
+    addressMutation.mutate(address._id);
+    closeModal();
+  };
+
   return (
-    <div className="absolute w-full min-h-full flex justify-center items-center bg-black/50">
-      <div className="w-80 flex justify-center items-center bg-white rounded-lg">
+    <div className="w-full min-h-full">
+      <div className="fixed top-0 left-0 w-full h-full bg-black/20"></div>
+
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 flex justify-center items-center bg-white rounded-lg">
         <div className="p-6 text-center">
           <div>
             <h3 className="mb-5 text-lg font-normal text-zinc-600">
-              Are you sure you want to delete this note?
+              Are you sure you want to delete this address?
             </h3>
 
             <button

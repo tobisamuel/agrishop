@@ -39,6 +39,16 @@ export const createAddress = async (data: AddressFormInputs) => {
   return response.data;
 };
 
+export const deleteAddress = async (id: string) => {
+  const response = await axiosPrivate.delete<Address>(`/addresses/${id}`);
+  return response.data;
+};
+
+export const editAddress = async (id: string, data: AddressFormInputs) => {
+  const response = await axiosPrivate.put<Address>(`/addresses/${id}`, data);
+  return response.data;
+};
+
 export const getProducts = async () => {
   const response = await axios.get<Product[]>(`/products`);
   return response.data;

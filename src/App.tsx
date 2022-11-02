@@ -23,6 +23,8 @@ import DashboardLayout from "./components/DashboardLayout";
 import AccountLayout from "./components/AccountLayout";
 import VendorLogin from "./pages/vendors/login";
 import VendorSignup from "./pages/vendors/register";
+import Products from "./pages/dashboard/products";
+import Orders from "./pages/dashboard/orders";
 
 function App() {
   return (
@@ -51,8 +53,8 @@ function App() {
         <Route path="register" element={<VendorSignup />} />
         <Route path="dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="products" element={<Income />} />
-          <Route path="orders" element={<Income />} />
+          <Route path="products" element={<Products />} />
+          <Route path="orders" element={<Orders />} />
           <Route path="income" element={<Income />} />
           <Route path="profile" element={<Income />} />
         </Route>
