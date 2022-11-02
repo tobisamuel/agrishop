@@ -6,6 +6,7 @@ import fruits from "../assets/fruits.jpg";
 import grains from "../assets/grains.jpg";
 import vegetables from "../assets/vegetables.jpg";
 import useFetchProducts from "../hooks/useFetchProducts";
+import useAuth from "../hooks/useAuth";
 
 const items = Array.from(Array(12).keys());
 
@@ -17,6 +18,7 @@ const categories = [
 
 export const Home = () => {
   const { data: products, isLoading } = useFetchProducts();
+  const { accessToken, refresh } = useAuth();
 
   return (
     <Layout>
@@ -24,6 +26,10 @@ export const Home = () => {
         <div className="pt-2 space-y-2 md:px-2 md:container md:mx-auto md:min-w-[1000px]">
           <div className="p-2 bg-white md:p-0">
             <AutoscrollCarousel />
+          </div>
+
+          <div>
+            <button onClick={() => refresh()}>refresh </button>
           </div>
 
           <section className="p-2 bg-white">

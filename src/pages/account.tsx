@@ -18,7 +18,10 @@ export const Account = () => {
             // activeClassName="text-red-500 font-semibold"
             key={item.name}
             to={item.href}
-            className="shrink-0"
+            // className="shrink-0"
+            className={({ isActive }) =>
+              `shrink-0 ${isActive ? "text-red-500 font-semibold" : ""}`
+            }
           >
             <span>{item.name}</span>
           </NavLink>
@@ -33,6 +36,9 @@ export const Account = () => {
                 // activeClassName="text-red-500 font-semibold"
                 key={item.name}
                 to={item.href}
+                className={({ isActive }) =>
+                  `shrink-0 ${isActive ? "text-red-500 font-semibold" : ""}`
+                }
               >
                 <div className="px-4 py-2 text-sm hover:bg-slate-200 hover:font-semibold">
                   <span>{item.name}</span>

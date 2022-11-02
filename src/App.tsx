@@ -19,14 +19,14 @@ import AccountPage from "./components/Account";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<SignUp />} />
-      <Route path="products/:slug" element={<ProductPage />} />
-      <Route path="cart" element={<Cart />} />
-      <Route path="checkout" element={<Checkout />} />
 
       <Route element={<PersistLogin />}>
+        <Route path="/" element={<Home />} />
+        <Route path="products/:slug" element={<ProductPage />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
         <Route element={<RequireAuth />}>
           <Route path="account" element={<Account />}>
             <Route index element={<AccountPage />} />

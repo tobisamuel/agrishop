@@ -2,6 +2,7 @@ import axios, { axiosPrivate } from "./axios";
 import { SignUpFormInputs } from "../components/SignupForm";
 import { UserFormInputs } from "../components/SigninForm";
 import { Address, LoginResponse, Product, User } from "../utils/types";
+import { AddressFormInputs } from "../components/AddressForm";
 
 export const userSignup = async (data: SignUpFormInputs) => {
   const response = await axios.post("/auth/register", data);
@@ -30,6 +31,11 @@ export const getUser = async (userId: string) => {
 
 export const getAddresses = async (userId: string) => {
   const response = await axiosPrivate.get<Address[]>(`/addresses/${userId}`);
+  return response.data;
+};
+
+export const createAddress = async (data: AddressFormInputs) => {
+  const response = await axiosPrivate.post<Address>(`/addresses`, data);
   return response.data;
 };
 

@@ -8,7 +8,7 @@ export const Checkout = () => {
 
   return (
     <Layout>
-      <div className="min-h-[calc(100vh-180px)] bg-gray-100">
+      <div className="min-h-[calc(100vh-180px)] bg-gray-100 md:min-h-[calc(100vh-128px)]">
         <div className="p-2 space-y-4 bg-gray-100 md:container md:mx-auto md:min-w-[1000px] md:space-y-0 md:flex md:gap-5">
           <div className="bg-white p-3 flex-1 md:min-w-[684px]">
             <h1 className="text-3xl mb-2">Checkout ({cart.size} item)</h1>
