@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { ReactNode, useRef, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import { useRef, useState } from "react";
 import {
   FaChartLine,
   FaRegCreditCard,
@@ -7,27 +7,22 @@ import {
   FaUserAlt,
 } from "react-icons/fa";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
-import Logo from "./Logo";
 import Sidebar from "./Sidebar";
 import useOutsideClick from "../hooks/useOutsideClick";
+import VendorsLogo from "./VendorsLogo";
 
 const MenuItems = [
-  { title: "Orders", href: "/vendor/dashboard/orders", icon: FaRegCreditCard },
   {
     title: "Products",
-    href: "/vendor/dashboard/products",
+    href: "/vendors/dashboard/products",
     icon: FaRegCreditCard,
   },
-  { title: "Finances", href: "/vendor/dashboard/finances", icon: FaChartLine },
-  { title: "Profile", href: "/vendor/dashboard/profile", icon: FaUserAlt },
+  { title: "Orders", href: "/vendors/dashboard/orders", icon: FaRegCreditCard },
+  { title: "Income", href: "/vendors/dashboard/income", icon: FaChartLine },
+  { title: "Profile", href: "/vendors/dashboard/profile", icon: FaUserAlt },
 ];
 
-type Props = {
-  title?: string;
-  children: ReactNode;
-};
-
-const DashboardLayout = ({ children, title = "Agrishop Vendors" }: Props) => {
+const DashboardLayout = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -49,11 +44,13 @@ const DashboardLayout = ({ children, title = "Agrishop Vendors" }: Props) => {
         ref={ref}
         className={`absolute top-0 w-72 h-full bg-slate-800 lg:hidden lg:static ${
           menuOpen ? "" : "-translate-x-full"
-        } transform ease-in-out duration-300`}
+        } transform ease-in-out duration-300 z-50`}
       >
         <div className="w-full h-full px-4 py-8 flex flex-col justify-between">
           <div>
-            <Logo />
+            <Link to="/vendors">
+              <VendorsLogo />
+            </Link>
 
             <div className="mt-8 space-y-3">
               {MenuItems.map((item, index) => (
@@ -86,11 +83,16 @@ const DashboardLayout = ({ children, title = "Agrishop Vendors" }: Props) => {
               <HiOutlineMenuAlt1 />
             </button>
           </div>
-          <Logo />
+
+          <Link to="/vendors">
+            <VendorsLogo />
+          </Link>
           <div className="text-right flex-grow basis-0"></div>
         </div>
 
-        <div className="px-4">{children}</div>
+        <div className="px-4">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

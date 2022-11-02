@@ -1,7 +1,7 @@
-import useFetchUser from "../hooks/useFetchUser";
-import Spinner from "./spinner";
+import useFetchUser from "../../hooks/useFetchUser";
+import Spinner from "../../components/spinner";
 
-const AccountPage = () => {
+export const AccountPage = () => {
   const { data, isLoading } = useFetchUser();
 
   if (isLoading) return <Spinner />;
@@ -136,5 +136,3 @@ const AccountPage = () => {
     </div>
   );
 };
-
-export default AccountPage;

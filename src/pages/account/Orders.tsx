@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaClipboardList } from "react-icons/fa";
-import useFetchOrders from "../hooks/useFetchOrders";
-import Spinner from "./spinner";
+import useFetchOrders from "../../hooks/useFetchOrders";
+import Spinner from "../../components/spinner";
 
-const OrdersPage = () => {
+export const OrdersPage = () => {
   const [active, setActive] = useState("pending");
 
   const { data, isLoading } = useFetchOrders({ status: active });
@@ -77,5 +77,3 @@ const OrdersPage = () => {
     </div>
   );
 };
-
-export default OrdersPage;

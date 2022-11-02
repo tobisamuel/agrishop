@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 
-const WishlistPage = () => {
+export const WishlistPage = () => {
   return (
     <div className="px-2 py-4">
       <div>
@@ -20,5 +20,3 @@ const WishlistPage = () => {
     </div>
   );
 };
-
-export default WishlistPage;

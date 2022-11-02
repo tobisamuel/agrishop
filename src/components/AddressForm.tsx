@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { createAddress } from "../api/requests";
 import useAuth from "../hooks/useAuth";
 import { Address } from "../utils/types";
-import Spinner from "./spinner";
 
 type Props = {
   closeModal: () => void;
@@ -49,11 +48,31 @@ const AddressForm = ({ closeModal, address }: Props) => {
     }
   };
 
+  // <div className="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden">
+  //   <div className="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
+
+  //     <div className="space-y-1 px-2 pt-2 pb-3">
+  //       <a
+  //         href="#"
+  //         className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+  //       >
+  //         Dashboard
+  //       </a>
+  //     </div>
+  //     <a
+  //       href="#"
+  //       className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100"
+  //     >
+  //       Log in
+  //     </a>
+  //   </div>
+  // </div>;
+
   return (
     <div className="w-screen h-full">
       <div className="fixed top-0 left-0 w-full h-full bg-black/50"></div>
       <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10/12 p-4 bg-white rounded-lg md:w-1/2">
-        <h1 className="mt-2 mb-4 text-xl font-semibold">Add a new Address</h1>
+        <h1 className="mb-4 text-xl font-semibold">Add a new Address</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="flex flex-col gap-4 md:space-y-0 md:flex-row md:gap-3">
             <input

@@ -6,7 +6,7 @@ import grains from "../assets/grains.jpg";
 import vegetables from "../assets/vegetables.jpg";
 
 const categories = [
-  { image: vendor, name: "Become a Vendor", href: "/vendor/login" },
+  { image: vendor, name: "Become a Vendor", href: "/vendors" },
   { image: fruits, name: "Shop for fruits", href: "/" },
   { image: vegetables, name: "Shop for Vegetables", href: "/" },
   { image: grains, name: "Shop for Grains", href: "/" },

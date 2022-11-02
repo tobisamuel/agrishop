@@ -1,9 +1,5 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { ReactNode } from "react";
-
-type Props = {
-  children?: ReactNode;
-};
+import { NavLink, Outlet } from "react-router-dom";
+import Layout from "./layout";
 
 const navItems = [
   { name: "My Account", href: "/account" },
@@ -12,19 +8,18 @@ const navItems = [
   { name: "Wishlist", href: "/account/wishlist" },
 ];
 
-const AccountLayout = ({ children }: Props) => {
-  const nagivate = useNavigate();
-
+const AccountLayout = () => {
   return (
-    <>
+    <Layout>
       {/* Mobile Nav */}
       <div className="p-2 bg-slate-300 flex gap-3 items-center overflow-scroll md:hidden scrollbar-hide">
         {navItems.map((item) => (
           <NavLink
-            // activeClassName="text-red-500 font-semibold"
             key={item.name}
             to={item.href}
-            className="shrink-0"
+            className={({ isActive }) =>
+              `shrink-0 ${isActive ? "text-red-500 font-semibold" : ""}`
+            }
           >
             <span>{item.name}</span>
           </NavLink>
@@ -36,9 +31,11 @@ const AccountLayout = ({ children }: Props) => {
           <div className="py-3">
             {navItems.map((item) => (
               <NavLink
-                // activeClassName="text-red-500 font-semibold"
                 key={item.name}
                 to={item.href}
+                className={({ isActive }) =>
+                  `shrink-0 ${isActive ? "text-red-500 font-semibold" : ""}`
+                }
               >
                 <div className="px-4 py-2 text-sm hover:bg-slate-200 hover:font-semibold">
                   <span>{item.name}</span>
@@ -49,10 +46,10 @@ const AccountLayout = ({ children }: Props) => {
         </div>
 
         <div className="min-h-[calc(100vh-220px)] md:min-h-[calc(100vh-148px)] md:w-3/4">
-          {children}
+          <Outlet />
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

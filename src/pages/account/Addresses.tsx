@@ -1,12 +1,11 @@
 import { useState } from "react";
-
 import { FaRegAddressBook } from "react-icons/fa";
-import useFetchAddress from "../hooks/useFetchAddress";
-import AddressForm from "./AddressForm";
-import Modal from "./modal";
-import Spinner from "./spinner";
+import useFetchAddress from "../../hooks/useFetchAddress";
+import AddressForm from "../../components/AddressForm";
+import Modal from "../../components/modal";
+import Spinner from "../../components/spinner";
 
-const AddressesPage = () => {
+export const AddressesPage = () => {
   const { data, isLoading } = useFetchAddress();
   const [showModal, setShowModal] = useState(false);
 
@@ -69,5 +68,3 @@ const AddressesPage = () => {
     </>
   );
 };
-
-export default AddressesPage;

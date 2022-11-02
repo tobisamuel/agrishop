@@ -5,17 +5,17 @@ import {
   FaSignOutAlt,
   FaUserAlt,
 } from "react-icons/fa";
-import Logo from "./Logo";
+import VendorsLogo from "./VendorsLogo";
 
 const MenuItems = [
-  { title: "Orders", href: "/vendor/dashboard/orders", icon: FaRegCreditCard },
   {
     title: "Products",
-    href: "/vendor/dashboard/products",
+    href: "/vendors/dashboard/products",
     icon: FaRegCreditCard,
   },
-  { title: "Finances", href: "/vendor/dashboard/finances", icon: FaChartLine },
-  { title: "Profile", href: "/vendor/dashboard/profile", icon: FaUserAlt },
+  { title: "Orders", href: "/vendors/dashboard/orders", icon: FaRegCreditCard },
+  { title: "Income", href: "/vendors/dashboard/income", icon: FaChartLine },
+  { title: "Profile", href: "/vendors/dashboard/profile", icon: FaUserAlt },
 ];
 
 const Sidebar = () => {
@@ -23,7 +23,9 @@ const Sidebar = () => {
     <div className="hidden w-80 h-screen bg-slate-800 lg:block">
       <div className="w-full h-full px-4 py-8 flex flex-col justify-between">
         <div>
-          <Logo />
+          <Link to="/vendors">
+            <VendorsLogo />
+          </Link>
 
           <div className="mt-8 space-y-3">
             {MenuItems.map((item, index) => (
