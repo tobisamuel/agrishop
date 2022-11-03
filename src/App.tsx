@@ -25,6 +25,7 @@ import VendorLogin from "./pages/vendors/login";
 import VendorSignup from "./pages/vendors/register";
 import Products from "./pages/dashboard/products";
 import Orders from "./pages/dashboard/orders";
+import { Store } from "./pages/store";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <Route element={<PersistLogin />}>
         <Route path="/" element={<Home />} />
         <Route path="products/:slug" element={<ProductPage />} />
+        <Route path="store/:id" element={<Store />} />
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
         <Route element={<RequireAuth />}>

@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useParams } from "react-router-dom";
@@ -5,13 +6,44 @@ import Layout from "../components/layout";
 import RatingStars from "../components/RatingStars";
 import Spinner from "../components/spinner";
 import { useCart } from "../context/cart";
+import useAuth from "../hooks/useAuth";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import useFetchProduct from "../hooks/useFetchProduct";
 
 export const ProductPage = () => {
   const { slug } = useParams();
+  const { userId } = useAuth();
   const { dispatch } = useCart();
-  const [quantity, setQuantity] = useState<number>(1);
+  const axiosPrivate = useAxiosPrivate();
+  const [quantity, setQuantity] = useState(1);
+  const [liked, setLiked] = useState(false);
   const { data: product, isLoading } = useFetchProduct(slug);
+
+  const queryClient = useQueryClient();
+
+  const addToWishlist = async ({
+    userId,
+    product_id,
+  }: {
+    userId: string;
+    product_id?: string;
+  }) => {
+    const response = await axiosPrivate.post(`/users/${userId}/wishlist`, {
+      product_id,
+    });
+    return response.data;
+  };
+
+  const wishlistMutation = useMutation(addToWishlist, {
+    onSuccess: () => {
+      setLiked(true);
+      queryClient.invalidateQueries(["wishlist"]);
+    },
+  });
+
+  const addToList = () => {
+    wishlistMutation.mutate({ userId, product_id: product?._id });
+  };
 
   const reduceQuantity = () => {
     if (quantity <= 1) return;
@@ -50,6 +82,25 @@ export const ProductPage = () => {
             <h1 className="my-2 md:text-xl">{product?.name}</h1>
 
             <RatingStars />
+
+            <button type="button" onClick={addToList}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className={`w-6 h-6 stroke-red-600 ${
+                  liked ? "fill-red-600" : ""
+                }`}
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+            </button>
 
             <div className="mt-4 mb-2 border-b border-slate-200"></div>
 

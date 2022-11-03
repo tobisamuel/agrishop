@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 
 const useFetchOrders = ({ status = "pending" } = {}) => {
   const axiosPrivate = useAxiosPrivate();
-  const { isLoggedIn, userId } = useAuth();
+  const { userId } = useAuth();
 
   const getOrders = async (userId: string, status: string) => {
     const response = await axiosPrivate.get<Order[]>(

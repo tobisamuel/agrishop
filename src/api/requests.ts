@@ -5,6 +5,12 @@ import { Address, LoginResponse, Order, Product, User } from "../utils/types";
 import { AddressFormInputs } from "../components/AddressForm";
 import { OrderDeets } from "../pages";
 
+type PassArgs = {
+  id: string;
+  oldPassword: string;
+  newPassword: string;
+};
+
 export const userSignup = async (data: SignUpFormInputs) => {
   const response = await axios.post("/auth/register", data);
   return response.data;
@@ -65,16 +71,43 @@ export const createOrder = async (data: OrderDeets) => {
   return response.data;
 };
 
+export const getWishlist = async (id: string) => {
+  const response = await axiosPrivate.post<Product[]>(`/users/${id}/wishlist`);
+  return response.data;
+};
+
+export const addToWishlist = async ({
+  userId,
+  product_id,
+}: {
+  userId: string;
+  product_id?: string;
+}) => {
+  const response = await axiosPrivate.post<Product[]>(
+    `/users/${userId}/wishlist`,
+    { product_id }
+  );
+  return response.data;
+};
+
+export const removeFromWishlist = async ({
+  userId,
+  productId,
+}: {
+  userId: string;
+  productId: string;
+}) => {
+  const response = await axiosPrivate.put<Product[]>(
+    `/users/${userId}/wishlist`,
+    { id: productId }
+  );
+  return response.data;
+};
+
 export const updateUser = async (data: User): Promise<User> => {
   const { _id, ...rest } = data;
   const response = await axiosPrivate.put(`/users/${_id}`, rest);
   return response.data;
-};
-
-type PassArgs = {
-  id: string;
-  oldPassword: string;
-  newPassword: string;
 };
 
 export const changePassword = async (data: PassArgs) => {

@@ -37,7 +37,7 @@ export const OrdersPage = () => {
       </div>
 
       <div className="mt-5 min-h-[300px] rounded">
-        {data ? (
+        {data?.length ? (
           <div className="overflow-x-auto relative  shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-black border">
               <thead className="text-xs text-black uppercase bg-gray-50 dark:bg-gray-200 dark:text-black">

@@ -45,7 +45,7 @@ export const AddressesPage = () => {
         <div className="mt-4 min-h-[300px] px-2 py-4 bg-slate-50 rounded md:px-4">
           {isLoading && <Spinner />}
 
-          {data ? (
+          {data?.length ? (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data?.map((address) => (
                 <div key={address._id} className="w-full p-4 bg-white shadow">
@@ -92,7 +92,7 @@ export const AddressesPage = () => {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col justify-center items-center">
+            <div className="mt-24 flex flex-col justify-center items-center">
               <span className="text-5xl text-slate-400">
                 <FaRegAddressBook />
               </span>
