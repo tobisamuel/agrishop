@@ -1,22 +1,23 @@
 import { Product } from "../../utils/types";
 
-type CartItem = {
+export type CartItemType = {
   product: Product;
   quantity: number;
 };
 
 export type CartState = {
-  items: CartItem[];
+  items: CartItemType[];
   size: number;
   total: number;
 };
 
 // An interface for our actions
 export type CartAction =
-  | { type: "ADD_TO_CART"; payload: CartItem }
+  | { type: "ADD_TO_CART"; payload: CartItemType }
   | { type: "REMOVE_FROM_CART"; payload: string }
   | { type: "INCREASE_QUANTITY"; payload: string }
-  | { type: "DECREASE_QUANTITY"; payload: string };
+  | { type: "DECREASE_QUANTITY"; payload: string }
+  | { type: "CLEAR_CART"; payload?: string };
 
 // Our reducer function that uses a switch statement to handle our actions
 export function cartReducer(state: CartState, action: CartAction) {
@@ -73,6 +74,13 @@ export function cartReducer(state: CartState, action: CartAction) {
           }
           return item;
         }),
+      };
+
+    case "CLEAR_CART":
+      return {
+        items: [],
+        size: 0,
+        total: 0,
       };
 
     default:

@@ -1,8 +1,9 @@
 import axios, { axiosPrivate } from "./axios";
 import { SignUpFormInputs } from "../components/SignupForm";
 import { UserFormInputs } from "../components/SigninForm";
-import { Address, LoginResponse, Product, User } from "../utils/types";
+import { Address, LoginResponse, Order, Product, User } from "../utils/types";
 import { AddressFormInputs } from "../components/AddressForm";
+import { OrderDeets } from "../pages";
 
 export const userSignup = async (data: SignUpFormInputs) => {
   const response = await axios.post("/auth/register", data);
@@ -59,9 +60,10 @@ export const getProduct = async (slug: string | undefined) => {
   return response.data;
 };
 
-// export const createOrder =async (data:OrderForm) => {
-
-// }
+export const createOrder = async (data: OrderDeets) => {
+  const response = await axiosPrivate.post<Order>(`/orders`, data);
+  return response.data;
+};
 
 export const updateUser = async (data: User): Promise<User> => {
   const { _id, ...rest } = data;

@@ -1,38 +1,68 @@
-import { useState, useEffect, MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { useState, ChangeEvent } from "react";
 import AddressForm from "../components/AddressForm";
 import CartItem from "../components/cartitem";
 import Layout from "../components/layout";
 import Modal from "../components/modal";
-import SelectAddress from "../components/SelectAddress";
 import Spinner from "../components/spinner";
-import { useCart } from "../context/cart";
+import { CartItemType, useCart } from "../context/cart";
 import useFetchAddress from "../hooks/useFetchAddress";
+import { usePaystackPayment } from "react-paystack";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createOrder } from "../api/requests";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
+export type OrderDeets = {
+  userId: string;
+  products: CartItemType[];
+  amount: number;
+  address: string;
+};
 
 export const Checkout = () => {
   const [address, setAddress] = useState("");
   const [showFormModal, setShowFormModal] = useState(false);
-  const [showSelectModal, setShowSelectModal] = useState(false);
-  const { cart, cartQuantity } = useCart();
+  const { cart, cartQuantity, dispatch } = useCart();
   const { data, isLoading } = useFetchAddress();
+  const { userId } = useAuth();
+  const navigate = useNavigate();
+  const orderMutation = useMutation(createOrder);
+
+  const config = {
+    reference: new Date().getTime().toString(),
+    email: "user@example.com",
+    amount: cartQuantity * 100,
+    publicKey: "pk_test_17ac1b0dce817884103d7ee65124009a6d22d1d2",
+  };
+
+  const initializePayment = usePaystackPayment(config);
 
   const closeFormModal = () => {
     setShowFormModal(false);
   };
 
-  const closeSelectModal = () => {
-    setShowSelectModal(false);
-  };
-
-  const handleClick = (e: MouseEvent<HTMLOptionElement>) => {
+  const handleClick = (e: ChangeEvent<HTMLSelectElement>) => {
     setAddress(e.currentTarget.value);
   };
 
-  if (isLoading) return <Spinner />;
+  const orderData = {
+    userId,
+    products: cart.items,
+    amount: cartQuantity,
+    address: address,
+  };
 
-  useEffect(() => {
-    console.log(address);
-  }, [address]);
+  const onSuccess = () => {
+    orderMutation.mutate(orderData);
+    dispatch({ type: "CLEAR_CART" });
+    navigate("/");
+  };
+
+  const onClose = () => {
+    console.log("closed");
+  };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <Layout>
@@ -46,23 +76,19 @@ export const Checkout = () => {
             <h2 className="mt-2 text-xl font-bold">Shipping Address</h2>
 
             {data ? (
-              <div className="w-full pt-2 pb-4 flex justify-between items-center">
-                <div>
-                  <div>
-                    <span className="font-semibold">{`${data[1].firstName} ${data[1].lastName}`}</span>
-                    <span className="ml-2">{data[1].phoneNumber}</span>
-                  </div>
+              <div className="w-full pt-2 pb-4">
+                <label className="block">Choose an address:</label>
+                <select onChange={handleClick}>
+                  {data.map((address) => {
+                    const fullAddress = `${address.firstName} ${address.lastName}, ${address.phoneNumber}, ${address.address}, ${address.city}, ${address.state}, ${address.zip}`;
 
-                  <div className="text-sm">{data[1].address}</div>
-                  <div className="text-sm">{`${data[1].city}, ${data[1].state}, ${data[1].zip}`}</div>
-                </div>
-
-                <button
-                  className="text-blue-800"
-                  onClick={() => setShowSelectModal(true)}
-                >
-                  change
-                </button>
+                    return (
+                      <option value={fullAddress} key={address._id}>
+                        {fullAddress}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             ) : (
               <button
@@ -106,12 +132,16 @@ export const Checkout = () => {
             </div>
 
             <div className="mt-2 w-full text-center">
-              <Link
-                to="/"
-                className="inline-block w-full p-2 bg-slate-400 text-white rounded-md"
-              >
-                Proceed to checkout
-              </Link>
+              <div>
+                <button
+                  className="inline-block w-full p-2 bg-slate-400 text-white rounded-md"
+                  onClick={() => {
+                    initializePayment(onSuccess, onClose);
+                  }}
+                >
+                  Checkout
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -119,12 +149,6 @@ export const Checkout = () => {
         {showFormModal && (
           <Modal>
             <AddressForm closeModal={closeFormModal} />
-          </Modal>
-        )}
-
-        {showSelectModal && (
-          <Modal>
-            <SelectAddress closeModal={closeSelectModal} />
           </Modal>
         )}
       </div>
