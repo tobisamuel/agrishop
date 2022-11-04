@@ -6,7 +6,6 @@ import fruits from "../assets/fruits.jpg";
 import grains from "../assets/grains.jpg";
 import vegetables from "../assets/vegetables.jpg";
 import useFetchProducts from "../hooks/useFetchProducts";
-import useAuth from "../hooks/useAuth";
 
 const items = Array.from(Array(12).keys());
 
