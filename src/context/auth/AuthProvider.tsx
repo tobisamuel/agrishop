@@ -2,9 +2,7 @@ import { FC, PropsWithChildren, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser, logoutUser, refreshToken } from "../../api/requests";
 import { UserFormInputs } from "../../components/SigninForm";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import getIdFromToken from "../../utils/decodeToken";
-import { User } from "../../utils/types";
 import { AuthContext } from "./AuthContext";
 
 interface LocationState {

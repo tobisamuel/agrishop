@@ -21,7 +21,6 @@ export const WishlistPage = () => {
     () => getWishlist(userId),
     {
       refetchOnWindowFocus: false,
-      refetchOnMount: false,
       refetchOnReconnect: false,
       staleTime: 1000 * 60 * 60 * 24,
     }

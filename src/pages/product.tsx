@@ -15,11 +15,10 @@ export const ProductPage = () => {
   const { userId } = useAuth();
   const { dispatch } = useCart();
   const axiosPrivate = useAxiosPrivate();
+  const queryClient = useQueryClient();
+  const { data: product, isLoading } = useFetchProduct(slug);
   const [quantity, setQuantity] = useState(1);
   const [liked, setLiked] = useState(false);
-  const { data: product, isLoading } = useFetchProduct(slug);
-
-  const queryClient = useQueryClient();
 
   const addToWishlist = async ({
     userId,
@@ -36,8 +35,8 @@ export const ProductPage = () => {
 
   const wishlistMutation = useMutation(addToWishlist, {
     onSuccess: () => {
-      setLiked(true);
       queryClient.invalidateQueries(["wishlist"]);
+      setLiked(true);
     },
   });
 
