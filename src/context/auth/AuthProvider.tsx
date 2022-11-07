@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { FC, PropsWithChildren, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser, logoutUser, refreshToken } from "../../api/requests";
+import { UserFormInputs } from "../../components/SigninForm";
 import getIdFromToken from "../../utils/decodeToken";
 import { AuthContext } from "./AuthContext";
 
@@ -18,16 +19,13 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const location = useLocation();
   const pathname = (location.state as LocationState)?.from.pathname;
 
-  const signInMutation = useMutation(loginUser, {
-    onSuccess: (data) => {
-      setAccessToken(data.accessToken);
-      const id = getIdFromToken(data.accessToken);
-      setUserId(id);
-      navigate(pathname || "/", { replace: true });
-    },
-  });
-
-  const isLoggedIn = accessToken ? true : false;
+  const loginFunc = async (data: UserFormInputs) => {
+    const response = await loginUser(data);
+    setAccessToken(response.accessToken);
+    const id = getIdFromToken(response.accessToken);
+    setUserId(id);
+    navigate(pathname || "/", { replace: true });
+  };
 
   const refresh = async () => {
     const { accessToken } = await refreshToken();
@@ -43,9 +41,8 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const auth = {
     accessToken,
-    isLoggedIn,
+    loginFunc,
     refresh,
-    signInMutation,
     signOut,
     userId,
   };

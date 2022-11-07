@@ -9,6 +9,19 @@ export type User = {
   email: string;
 };
 
+export type Vendor = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  businessName: string;
+  businessAddress: string;
+  approved: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type Address = {
   _id: string;
   userId: string;
@@ -41,8 +54,7 @@ export type Product = {
   slug: string;
   description: string;
   category: string;
-  vendorId: string;
-  vendorName: string;
+  vendor: Vendor;
   price: number;
   image: string;
   inStock: boolean;

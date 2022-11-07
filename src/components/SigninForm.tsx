@@ -8,7 +8,7 @@ export type UserFormInputs = {
 };
 
 const SigninForm = () => {
-  const { signInMutation } = useAuth();
+  const { loginFunc } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -19,7 +19,7 @@ const SigninForm = () => {
 
   const onSubmit: SubmitHandler<UserFormInputs> = async (data) => {
     try {
-      signInMutation.mutate(data);
+      loginFunc(data);
     } catch (error) {
       console.log(error);
     }
@@ -68,14 +68,14 @@ const SigninForm = () => {
       <button
         className="mt-4 p-[10px] flex justify-center items-center gap-2 bg-teal-600 text-md text-white font-medium rounded-md hover:bg-teal-700 disabled:bg-gray-300 transition-all duration-300"
         type="submit"
-        disabled={signInMutation.isLoading}
+        // disabled={signInMutation.isLoading}
       >
         <span>Sign In</span>
-        <span
+        {/* <span
           className={`${
             signInMutation.isLoading ? "block" : "hidden"
           } border-2 border-t-2  border-t-white rounded-full h-4 w-4 animate-spin border-zinc-400`}
-        ></span>
+        ></span> */}
       </button>
 
       <div className="mt-2 flex items-center">

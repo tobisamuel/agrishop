@@ -12,7 +12,7 @@ const Navbar = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const { isLoggedIn, signOut } = useAuth();
+  const { accessToken, signOut } = useAuth();
   const { cart } = useCart();
 
   const openMenu = () => {
@@ -104,7 +104,7 @@ const Navbar = () => {
                 tabIndex={-1}
               >
                 <div ref={menuRef} role="none">
-                  {!isLoggedIn && (
+                  {!accessToken && (
                     <Link
                       to="/login"
                       className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
@@ -142,7 +142,7 @@ const Navbar = () => {
                     Wishlist
                   </Link>
 
-                  {isLoggedIn && (
+                  {accessToken && (
                     <button
                       className="w-full text-left text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
                       role="menuitem"
