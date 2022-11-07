@@ -1,9 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
 import { FC, PropsWithChildren, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser, logoutUser, refreshToken } from "../../api/requests";
 import { UserFormInputs } from "../../components/SigninForm";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import getIdFromToken from "../../utils/decodeToken";
+import { User } from "../../utils/types";
 import { AuthContext } from "./AuthContext";
 
 interface LocationState {
@@ -30,6 +31,8 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const refresh = async () => {
     const { accessToken } = await refreshToken();
     setAccessToken(accessToken);
+    const id = getIdFromToken(accessToken);
+    setUserId(id);
     return accessToken;
   };
 

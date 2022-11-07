@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 
 export const Cart = () => {
   const { cart, cartQuantity } = useCart();
-  const { isLoggedIn } = useAuth();
+  const { accessToken } = useAuth();
 
   return (
     <Layout>
@@ -76,7 +76,7 @@ export const Cart = () => {
 
               <div className="mt-2 w-full text-center">
                 <Link
-                  to={isLoggedIn ? "/checkout" : "/login"}
+                  to={accessToken ? "/checkout" : "/login"}
                   className="inline-block w-full p-2 bg-slate-400 text-white rounded-md"
                 >
                   Proceed to checkout
