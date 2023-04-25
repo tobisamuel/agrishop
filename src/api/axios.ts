@@ -1,11 +1,11 @@
 import axios, { AxiosError } from "axios";
 
-const BASE_URL = "https://agrishop-api.herokuapp.com";
+const DATABASE_URL = import.meta.env.VITE_DATABASE_URL;
 
-export default axios.create({ baseURL: BASE_URL, withCredentials: true });
+export default axios.create({ baseURL: DATABASE_URL, withCredentials: true });
 
 export const axiosPrivate = axios.create({
-  baseURL: BASE_URL,
+  baseURL: DATABASE_URL,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
